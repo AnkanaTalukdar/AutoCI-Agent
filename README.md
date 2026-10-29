@@ -89,20 +89,21 @@ mkdir autoci-agent && cd autoci-agent
 # Create virtual environment
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+'''bash
 
-Step 2: Install Dependencies
+### Step 2: Install Dependencies
 Bash
 pip install -r requirements.txt
 
-Step 3: Run the AutoCI-Agent Webhook Server
+### Step 3: Run the AutoCI-Agent Webhook Server
 Bash
 python StudentName_AutoCIAgent.py
 
-Step 4: Run CLI Demonstration Mode (Self-Test)
+### Step 4: Run CLI Demonstration Mode (Self-Test)
 Bash
 python StudentName_AutoCIAgent.py --cli-test
 
-Step 5: Simulate a Webhook Payload
+### Step 5: Simulate a Webhook Payload
 Bash
 curl -X POST "http://localhost:8000/webhook/ci-failure" \
      -H "Content-Type: application/json" \
