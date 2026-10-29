@@ -82,34 +82,50 @@ The synthetic benchmark testbed and failure logs dataset used for training, eval
 3. Git installed.
 
 ### Step 1: Environment Configuration
+First, create your project directory and set up an isolated Python virtual environment to manage dependencies cleanly.
+
 ```bash
 # Clone or setup project directory
 mkdir autoci-agent && cd autoci-agent
 
 # Create virtual environment
 python3 -m venv venv
+
+# Activate virtual environment
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-'''bash
+```
 
 ### Step 2: Install Dependencies
-Bash
+Next, install all required project libraries specified in the requirements file.
+
+```bash
 pip install -r requirements.txt
+```
 
 ### Step 3: Run the AutoCI-Agent Webhook Server
-Bash
+Start the FastAPI webhook orchestrator server locally to listen for incoming continuous integration failure events.
+
+```bash
 python StudentName_AutoCIAgent.py
+```
 
 ### Step 4: Run CLI Demonstration Mode (Self-Test)
-Bash
+To test and demonstrate the self-healing workflow locally without needing an active webhook listener, run the built-in CLI test suite.
+
+```bash
 python StudentName_AutoCIAgent.py --cli-test
+```
 
 ### Step 5: Simulate a Webhook Payload
-Bash
+You can manually test the active webhook endpoint by sending a simulated JSON payload using curl in a separate terminal window.
+
+```bash
 curl -X POST "http://localhost:8000/webhook/ci-failure" \
      -H "Content-Type: application/json" \
      -d '{
-       "repo_url": "[https://github.com/example/sample-python-app](https://github.com/example/sample-python-app)",
+       "repo_url": "https://github.com/example/sample-python-app",
        "branch": "main",
        "commit_sha": "a1b2c3d4",
        "failing_log": "FAILED tests/test_auth.py::test_login - AssertionError: assert 401 == 200"
      }'
+```
